@@ -1,4 +1,4 @@
-WITH max_status_reached as (SELECT  SubscriptionID, 
+WITH max_statusreached as (SELECT  SubscriptionID, 
 								    MAX(StatusID) as maxstatus
 									FROM paymentstatuslog 
 									Group By SubscriptionID
@@ -14,7 +14,7 @@ paymentfunnelstage as (SELECT SubscriptionID,
         when maxstatus is null then 'User did not start payment process'
         end as paymentfunnelstage
 FROM Subscriptions subs
-LEFT JOIN   Max_status_reached m
+LEFT JOIN   Max_statusreached m
 on subs.SubscriptionID = m.SubscriptionID
 )
 SELECT paymentfunnelstage, 
